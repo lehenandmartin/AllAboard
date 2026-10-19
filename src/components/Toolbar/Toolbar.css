@@ -1,0 +1,239 @@
+/* ---------- Brand bar ---------- */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr;
+  align-items: center;
+  gap: 16px;
+  min-height: 48px;
+  padding: 0 8px 0 16px;
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.topbar__mark {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--brand);
+}
+
+/* Document title, centered, as in PowerPoint for the web. */
+.topbar__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.topbar__name {
+  width: 260px;
+  max-width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--on-brand);
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.topbar__name:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.topbar__name:focus {
+  outline: none;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+}
+
+.topbar__save {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.topbar__save--error {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--danger);
+  font-weight: 600;
+  opacity: 1;
+}
+
+.topbar__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.topbar__button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--on-brand);
+  cursor: pointer;
+}
+
+.topbar__button:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.topbar__button:focus-visible {
+  outline-color: var(--on-brand);
+}
+
+/* ---------- Command bar ---------- */
+.cmdbar {
+  position: relative;
+  z-index: var(--z-menu);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 48px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.cmdbar__sep {
+  width: 1px;
+  height: 20px;
+  margin: 0 6px;
+  background: var(--stroke);
+}
+
+.cmdbar__grow {
+  flex: 1;
+}
+
+/* ---------- File menu ---------- */
+.project-menu {
+  position: relative;
+}
+
+.button--ghost .project-menu__chevron {
+  color: var(--ink-2);
+}
+
+.project-menu__panel {
+  width: 340px;
+}
+
+.project-menu__recent {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.project-menu__recent .menu-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-menu__name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-menu__meta {
+  display: block;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.project-menu__delete {
+  flex: none;
+}
+
+.button--ghost.project-menu__delete .icon {
+  color: var(--ink-2);
+}
+
+.button--ghost.project-menu__delete:hover .icon {
+  color: var(--danger);
+}
+
+.project-menu__empty,
+.project-menu__note {
+  margin: 0;
+  padding: 6px 10px;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.project-menu__note {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--stroke);
+}
+
+/* App version and link, at the bottom of the File menu. */
+.project-menu__about {
+  padding: 4px 10px 6px;
+}
+
+/* ---------- Export ---------- */
+.export-menu {
+  position: relative;
+}
+
+.export-menu__panel {
+  gap: 10px;
+  width: 320px;
+  padding: 16px;
+}
+
+.export-menu__title {
+  margin: 0 0 2px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.export-menu__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.export-menu__row--field {
+  justify-content: space-between;
+  color: var(--ink-2);
+}
+
+.export-menu__row--field .number-input {
+  width: 110px;
+}
+
+.export-menu__hint {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.export-menu__go {
+  justify-self: end;
+}

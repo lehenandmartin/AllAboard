@@ -1,0 +1,267 @@
+/* Boards pane, in the manner of PowerPoint's slide pane. */
+.board-list {
+  width: 236px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--canvas);
+  border-right: 1px solid var(--stroke);
+}
+
+.board-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 0 8px 0 16px;
+}
+
+.board-list__header h2 {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.board-list__items {
+  flex: 1;
+  margin: 0;
+  padding: 2px 0 12px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+/* A board: number on the left, thumbnail, then name and image count. */
+.board-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 4px;
+  margin: 0 8px;
+  padding: 8px 8px 6px 0;
+  border-radius: var(--r-panel);
+  cursor: pointer;
+  touch-action: none;
+  /* Shift + click selects boards, not the page text. */
+  user-select: none;
+}
+
+.board-item:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+
+.board-item--dragging {
+  opacity: 0.4;
+}
+
+.board-item__index {
+  grid-row: 1;
+  padding-top: 2px;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.board-item--active .board-item__index {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.board-item__thumb {
+  position: relative;
+  grid-column: 2;
+  display: flex;
+}
+
+.thumb {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--stroke-strong);
+  transition: box-shadow 0.1s;
+}
+
+.board-item:hover .thumb {
+  box-shadow: 0 0 0 1px var(--stroke-accessible);
+}
+
+/* Board selected with others: a subtler frame than the active board's. */
+.board-item--selected:not(.board-item--active) .thumb,
+.board-item--selected:not(.board-item--active):hover .thumb {
+  box-shadow:
+    0 0 0 2px var(--brand-tint-2),
+    0 0 0 4px var(--brand-tint);
+}
+
+.board-item--selected {
+  background: var(--brand-tint);
+}
+
+/* Active board: frame in the brand color, like PowerPoint's active slide. */
+.board-item--active .thumb,
+.board-item--active:hover .thumb {
+  box-shadow:
+    0 0 0 2px var(--brand),
+    0 0 0 4px var(--brand-tint-2);
+}
+
+.thumb__text {
+  position: absolute;
+  border-radius: 1px;
+  background: #d2d0ce;
+}
+
+/* Drop target for frames dragged from the preview. */
+.board-item--drop .thumb {
+  box-shadow: 0 0 0 2px var(--brand);
+  filter: brightness(0.85);
+}
+
+.board-item__drop-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 3px 8px;
+  border-radius: var(--r-control);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Insertion line for reordering boards. */
+.board-item--insert-before::before,
+.board-item--insert-after::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 8px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand);
+}
+
+.board-item--insert-before::before {
+  top: -2px;
+}
+
+.board-item--insert-after::after {
+  bottom: -2px;
+}
+
+.board-item__meta {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-top: 6px;
+  padding-right: 32px;
+}
+
+.board-item__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.board-item__count {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.board-item__overflow {
+  color: var(--warn-ink);
+}
+
+.board-item__rename {
+  width: 100%;
+  user-select: text;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--stroke-strong);
+  border-bottom-color: var(--brand);
+  border-radius: var(--r-control);
+  box-shadow: inset 0 -1px 0 var(--brand);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.board-item__rename:focus {
+  outline: none;
+}
+
+/* A board's "…" menu. */
+.board-menu {
+  position: absolute;
+  right: 4px;
+  bottom: 6px;
+}
+
+.board-menu__button {
+  min-height: 28px;
+  width: 28px;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.board-item:hover .board-menu__button,
+.board-item--active .board-menu__button,
+.board-menu__button:focus-visible,
+.board-menu__button[aria-expanded='true'] {
+  opacity: 1;
+}
+
+.button--ghost.board-menu__button .icon {
+  color: var(--ink-2);
+}
+
+/* The menu opens inside the scrolling list: it fits the pane's width. */
+.board-menu__list {
+  width: 208px;
+  min-width: 0;
+}
+
+.board-menu__list--up {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
+/* Import options, at the bottom of the pane. */
+.board-list__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--stroke);
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.board-list__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.board-list__option .number-input {
+  width: 56px;
+}
+
+.board-list__option .number-input input {
+  padding-right: 8px;
+}
+
+.drag-preview--board {
+  padding: 0;
+  border: none;
+  background: none;
+}

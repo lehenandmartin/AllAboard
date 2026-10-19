@@ -1,0 +1,18 @@
+/* App name, version and link to the source code. */
+.about-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.about-line a {
+  color: var(--brand);
+  text-underline-offset: 2px;
+}
+
+.about-line a:hover {
+  color: var(--brand-hover);
+}

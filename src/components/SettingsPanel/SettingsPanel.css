@@ -1,0 +1,524 @@
+/* "Format" pane, in the manner of PowerPoint's format panes. */
+.settings-panel {
+  width: 320px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--stroke);
+  font-size: 13px;
+}
+
+.settings-panel__title {
+  margin: 0;
+  padding: 14px 16px 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Tabs (Fluent "pivot"): text, underline in the brand color. */
+.settings-panel__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.settings-panel__tabs button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 50%;
+  padding: 8px 8px 10px;
+  border: none;
+  background: none;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.settings-panel__tabs button:hover {
+  color: var(--ink);
+}
+
+.settings-panel__tabs button[aria-selected='true'] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.settings-panel__tabs button[aria-selected='true'] .icon {
+  color: var(--brand);
+}
+
+.settings-panel__tab-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-panel__tabs button[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand);
+}
+
+.settings-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+/* Collapsible sections. */
+.settings-section {
+  border-bottom: 1px solid var(--stroke);
+}
+
+.settings-section h3 {
+  margin: 0;
+}
+
+.settings-section__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.settings-section__header:hover {
+  background: var(--subtle);
+}
+
+.settings-section__chevron {
+  color: var(--ink-2);
+  transform: rotate(90deg);
+  transition: transform 0.15s var(--ease-out);
+}
+
+.settings-section--collapsed .settings-section__chevron {
+  transform: none;
+}
+
+.settings-section__icon {
+  color: var(--brand);
+}
+
+.settings-section__body {
+  padding: 0 12px 10px;
+}
+
+/* Optional features: the switch is in the header, the settings only show
+   when the option is on. The icon lines up with those of the collapsible
+   sections (after the chevron's space). */
+.option-section__header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 4px 12px 4px 34px;
+}
+
+.option-section__title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.option-section--off .option-section__title {
+  color: var(--ink-2);
+}
+
+.option-section--off .settings-section__icon {
+  color: var(--ink-3);
+}
+
+.settings-hint {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.settings-hint--intro {
+  margin: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.settings-hint--warning {
+  color: var(--warn-ink);
+}
+
+/* Banner: settings specific to the active board. */
+.settings-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 10px 12px 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--brand-tint-2);
+  border-radius: var(--r-control);
+  background: var(--brand-tint);
+  color: var(--brand-pressed);
+}
+
+/* Row: label | control | back-to-default button. */
+.setting {
+  display: grid;
+  grid-template-columns: 118px 1fr 24px;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 2px 0;
+}
+
+/* Label above, control spanning the full width. */
+.setting--stacked {
+  grid-template-columns: 1fr 24px;
+  row-gap: 4px;
+  padding: 4px 0;
+}
+
+.setting--stacked .setting__label {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.setting--stacked .setting__control {
+  grid-row: 2;
+  grid-column: 1 / 2;
+}
+
+.setting--stacked > :last-child {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.setting__label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.setting--overridden .setting__label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.setting__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--override);
+}
+
+.setting__control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.setting__control--pair .number-input {
+  flex: 1;
+}
+
+.setting__reset {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: var(--r-control);
+  background: none;
+  color: var(--override);
+  cursor: pointer;
+}
+
+.setting__reset:hover {
+  background: var(--brand-tint);
+}
+
+/* ---------- Fields (Fluent style: bottom stroke accented on focus) ---------- */
+.number-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 92px;
+  flex: none;
+}
+
+.number-input input,
+.text-input,
+.select {
+  width: 100%;
+  min-height: 30px;
+  padding: 3px 8px;
+  border: 1px solid var(--stroke-strong);
+  border-bottom-color: var(--stroke-accessible);
+  border-radius: var(--r-control);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.number-input input:hover,
+.text-input:hover,
+.select:hover {
+  border-color: var(--stroke-accessible);
+}
+
+.number-input input {
+  padding-right: 30px;
+  font-variant-numeric: tabular-nums;
+}
+
+.number-input input:focus,
+.text-input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--stroke-strong);
+  border-bottom-color: var(--brand);
+  box-shadow: inset 0 -1px 0 var(--brand);
+}
+
+.number-input__suffix {
+  position: absolute;
+  right: 8px;
+  color: var(--ink-2);
+  pointer-events: none;
+}
+
+.select {
+  appearance: none;
+  padding-right: 26px;
+  background: var(--surface)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%23605e5c' d='M15.85 7.65a.5.5 0 0 1 0 .7l-5.5 5.5a.5.5 0 0 1-.7 0l-5.5-5.5a.5.5 0 1 1 .7-.7L10 12.79l5.15-5.14a.5.5 0 0 1 .7 0'/%3E%3C/svg%3E")
+    no-repeat right 8px center;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.text-area {
+  height: auto;
+  min-height: 56px;
+  padding: 5px 8px;
+  line-height: 1.35;
+  resize: vertical;
+}
+
+.margins-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+}
+
+.margins-grid__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--ink-2);
+  font-size: 11px;
+}
+
+.margins-grid__item .number-input {
+  width: 100%;
+}
+
+/* Exclusive choices: joined buttons. */
+.segmented {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--stroke-strong);
+  border-radius: var(--r-control);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.segmented__option {
+  position: relative;
+  flex: 1;
+}
+
+.segmented__option + .segmented__option {
+  border-left: 1px solid var(--stroke-strong);
+}
+
+.segmented__option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segmented__option > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 0 6px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.segmented__option:hover > span {
+  background: var(--subtle);
+  color: var(--ink);
+}
+
+.segmented__option input:checked + span {
+  background: var(--brand-tint);
+  color: var(--brand-pressed);
+  font-weight: 600;
+}
+
+.segmented__option input:focus-visible + span {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+
+/* Fluent switch. */
+.toggle {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.toggle input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle__track {
+  width: 40px;
+  height: 20px;
+  border: 1px solid var(--stroke-accessible);
+  border-radius: 10px;
+  background: var(--surface);
+  transition: background 0.15s;
+}
+
+.toggle__track::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 3px;
+  border-radius: 50%;
+  background: var(--ink-2);
+  transition: transform 0.15s var(--ease-out);
+}
+
+.toggle:hover .toggle__track {
+  border-color: var(--ink-2);
+}
+
+.toggle input:checked + .toggle__track {
+  border-color: var(--brand);
+  background: var(--brand);
+}
+
+.toggle input:checked + .toggle__track::after {
+  background: var(--on-brand);
+  transform: translateX(20px);
+}
+
+.toggle input:focus-visible + .toggle__track {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.color-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.color-input input {
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+  border: 1px solid var(--stroke-strong);
+  border-radius: var(--r-control);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+/* Letterbox target framings. */
+.letterbox-targets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.letterbox-targets__button {
+  min-height: 26px;
+  padding: 0 6px;
+  border: 1px solid var(--stroke-strong);
+  border-radius: var(--r-control);
+  background: var(--surface);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.letterbox-targets__button:hover:not(:disabled) {
+  border-color: var(--brand);
+  color: var(--brand-pressed);
+}
+
+.letterbox-targets__button:disabled {
+  color: var(--ink-3);
+  cursor: default;
+}
+
+/* Color swatch in a choice (band background). */
+.swatch {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--stroke-accessible);
+  border-radius: 50%;
+}
+
+.swatch--black {
+  background: #000;
+}
+
+.swatch--white {
+  background: #fff;
+}

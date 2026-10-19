@@ -1,0 +1,141 @@
+.frame,
+.frame__clip,
+.frame__image,
+.frame__letterbox,
+.frame__border {
+  position: absolute;
+}
+
+.frame__letterbox {
+  pointer-events: none;
+}
+
+/* Common notice: text vertically centered in its box. */
+.frame__mention {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  pointer-events: none;
+}
+
+.frame--empty,
+.frame__border {
+  border-style: solid;
+}
+
+/* The border is drawn inside the image. */
+.frame__border {
+  pointer-events: none;
+}
+
+.frame__clip {
+  overflow: hidden;
+}
+
+.frame__image {
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+
+.frame--loading {
+  background: var(--canvas);
+}
+
+.frame--missing {
+  background: repeating-linear-gradient(45deg, #fbeaea 0 6px, #f6dcdc 6px 12px);
+}
+
+/* Interactive area over the frame. */
+.frame-handle {
+  position: absolute;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.frame-handle:hover {
+  outline: 1px solid rgb(196 62 28 / 0.5);
+}
+
+.frame-handle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.frame-handle--selected,
+.frame-handle--selected:hover {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.frame-handle--dimmed {
+  background: rgb(255 255 255 / 0.65);
+}
+
+.frame-handle--swap-target {
+  outline: 2px dashed var(--brand);
+  outline-offset: 2px;
+  background: rgb(196 62 28 / 0.15);
+}
+
+.drag-preview {
+  position: relative;
+  border-radius: 2px;
+  background: var(--canvas);
+  border: 1px solid var(--stroke-strong);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
+  cursor: grabbing;
+  opacity: 0.9;
+}
+
+.drag-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.drag-preview__count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+}
+
+/* Frame targeted by an image dragged from the computer. */
+.frame-handle--file-target,
+.frame-handle--file-target:hover {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  background: rgb(196 62 28 / 0.25);
+}
+
+.frame-handle__drop-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  /* Stays inside the frame, wrapping if needed. */
+  width: max-content;
+  max-width: calc(100% - 8px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

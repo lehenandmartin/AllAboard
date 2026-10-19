@@ -1,0 +1,115 @@
+.shortcuts {
+  width: min(720px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  padding: 0;
+  border: none;
+  border-radius: var(--r-panel);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-16);
+}
+
+.shortcuts::backdrop {
+  background: rgb(0 0 0 / 0.35);
+}
+
+.shortcuts__content {
+  padding: 20px 24px;
+}
+
+.shortcuts__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.shortcuts__header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.shortcuts__close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--r-control);
+  background: none;
+  color: var(--ink-2);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.shortcuts__close:hover {
+  background: var(--subtle);
+  color: var(--ink);
+}
+
+.shortcuts__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px 32px;
+}
+
+.shortcuts__groups h3 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shortcuts__groups dl {
+  margin: 0;
+}
+
+.shortcuts__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.shortcuts__item dt {
+  display: flex;
+  gap: 3px;
+  flex: none;
+}
+
+.shortcuts__item dd {
+  margin: 0;
+  color: var(--ink-2);
+  text-align: right;
+}
+
+.shortcuts kbd {
+  display: inline-block;
+  min-width: 22px;
+  padding: 1px 6px;
+  border: 1px solid var(--stroke-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--r-control);
+  background: var(--subtle);
+  font-family: inherit;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.shortcuts__footer {
+  margin: 16px 0 0;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.shortcuts__about {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--stroke);
+}

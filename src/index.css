@@ -1,0 +1,379 @@
+/* AllAboard: global stylesheet.
+   A nod to PowerPoint for the web (PowerPoint's Fluent colors, Fluent icons),
+   without a framework: the variables, then the shared components (buttons, fields, menus). */
+
+/* ---------- Variables ---------- */
+:root {
+  color-scheme: light;
+
+  /* Brand: PowerPoint's brick orange, reserved for actions and selection. */
+  --brand: #c43e1c;
+  --brand-hover: #a83518;
+  --brand-pressed: #8c2c14;
+  --brand-tint: #fdf3f0;
+  --brand-tint-2: #f8dbd2;
+  --on-brand: #ffffff;
+
+  /* Office's warm neutrals. */
+  --canvas: #f3f2f1;
+  --surface: #ffffff;
+  --subtle: #faf9f8;
+  --stage: #e6e4e2;
+  --stroke: #e1dfdd;
+  --stroke-strong: #c8c6c4;
+  --stroke-accessible: #8a8886;
+  --ink: #323130;
+  --ink-2: #605e5c;
+  --ink-3: #797775;
+
+  /* States. */
+  --warn-bg: #fff7e5;
+  --warn-stroke: #f1d08c;
+  --warn-ink: #7a4300;
+  --ok-bg: #e9f5ec;
+  --ok-stroke: #9fd3ad;
+  --ok-ink: #0b5d27;
+  --error-bg: #fdecea;
+  --error-stroke: #f1b3ad;
+  --error-ink: #8c1d18;
+  --danger: #b3261e;
+
+  /* Setting specific to a board (overridden): the brand color. */
+  --override: var(--brand);
+
+  --r-control: 4px;
+  --r-panel: 8px;
+  --shadow-2: 0 1px 2px rgb(0 0 0 / 0.08), 0 0 1px rgb(0 0 0 / 0.1);
+  --shadow-8: 0 4px 8px rgb(0 0 0 / 0.12), 0 0 2px rgb(0 0 0 / 0.1);
+  --shadow-16: 0 12px 32px rgb(0 0 0 / 0.18), 0 2px 6px rgb(0 0 0 / 0.08);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --z-menu: 20;
+  --z-overlay: 30;
+  --z-toast: 40;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font: 14px/1.43 var(--font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.icon {
+  flex: none;
+  fill: currentColor;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Structure ---------- */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--stroke-strong);
+  border-radius: var(--r-control);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: var(--stroke-accessible);
+  background: var(--subtle);
+}
+
+.button:active {
+  background: var(--canvas);
+}
+
+.button--primary {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.button--primary:hover {
+  border-color: var(--brand-hover);
+  background: var(--brand-hover);
+}
+
+.button--primary:active {
+  background: var(--brand-pressed);
+}
+
+/* Subtle button (command bars): icon in the brand color. */
+.button--ghost {
+  border-color: transparent;
+  background: transparent;
+  font-weight: 400;
+}
+
+.button--ghost:hover {
+  border-color: transparent;
+  background: rgb(196 62 28 / 0.07);
+}
+
+.button--ghost .icon {
+  color: var(--brand);
+}
+
+.button--icon {
+  width: 32px;
+  padding: 0;
+}
+
+.button--danger,
+.button--danger .icon {
+  color: var(--danger);
+}
+
+.button--danger:hover {
+  border-color: var(--error-stroke);
+  background: var(--error-bg);
+}
+
+.button:disabled,
+.button:disabled:hover {
+  border-color: var(--stroke);
+  background: var(--stroke);
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
+.button--ghost:disabled,
+.button--ghost:disabled:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.button--ghost:disabled .icon {
+  color: var(--ink-3);
+}
+
+.link-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--brand);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: var(--brand-hover);
+}
+
+/* ---------- Dropdown menus ---------- */
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: var(--z-menu);
+  display: grid;
+  min-width: 220px;
+  padding: 4px;
+  border-radius: var(--r-panel);
+  background: var(--surface);
+  box-shadow: var(--shadow-16);
+  animation: menu-in 0.15s var(--ease-out);
+}
+
+.menu-panel--right {
+  left: auto;
+  right: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: var(--r-control);
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-item:hover:not(:disabled) {
+  background: var(--canvas);
+}
+
+.menu-item > .icon {
+  color: var(--ink-2);
+}
+
+.menu-item:disabled {
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.menu-item:disabled > .icon {
+  color: var(--ink-3);
+}
+
+.menu-item--danger,
+.menu-item--danger > .icon {
+  color: var(--danger);
+}
+
+.menu-item__spacer {
+  flex: none;
+  width: 20px;
+}
+
+.menu-item__label {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-item__shortcut {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.menu-separator {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--stroke);
+}
+
+.menu-label {
+  padding: 6px 10px 2px;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* ---------- Startup and error ---------- */
+.boot {
+  margin: 0;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--ink-2);
+}
+
+.crash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.crash__panel {
+  max-width: 520px;
+  padding: 24px;
+  border-radius: var(--r-panel);
+  background: var(--surface);
+  box-shadow: var(--shadow-16);
+}
+
+.crash__panel h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.crash__panel p {
+  margin: 0 0 16px;
+  color: var(--ink-2);
+}
+
+.crash__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.crash__panel pre {
+  overflow: auto;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Context menu (right-click): placed at the pointer. */
+.context-menu {
+  position: fixed;
+  z-index: var(--z-overlay);
+  min-width: 230px;
+}
