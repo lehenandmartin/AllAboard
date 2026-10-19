@@ -9,6 +9,10 @@
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8">
 </p>
 
+<p align="center">
+  <a href="https://lehenandmartin.github.io/AllAboard/"><strong>Open AllAboard</strong></a> — runs in your browser, nothing to install
+</p>
+
 ---
 
 Turning a folder of frames into a storyboard deck usually means placing every image by hand, resizing it to match the others, lining up the captions and starting again when a shot is added. With AllAboard, you drop the images (files or a whole folder) once: they are sorted by name, laid out in a grid of identical frames on one or more slides, with a text block under each image or each row, and exported as a `.pptx` that opens in PowerPoint, Google Slides, Keynote or LibreOffice.
@@ -86,7 +90,13 @@ The name is a play on the boards it lays out, and on the conductor's call before
 
 ## Installation
 
+### Use it online
+
+Open **[lehenandmartin.github.io/AllAboard](https://lehenandmartin.github.io/AllAboard/)**: it is the full app, not a demo. It runs entirely in your browser: images and projects are stored on your computer (IndexedDB) and are never uploaded. The page is updated at every push to `main`.
+
 ### Static hosting
+
+To host your own copy:
 
 1. Clone the repository and build the site:
    ```bash

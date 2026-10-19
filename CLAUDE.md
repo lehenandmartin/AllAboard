@@ -32,7 +32,9 @@ PowerPoint, Google Slides, Keynote, LibreOffice).
 - JSZip for the project file
 - IndexedDB (via idb-keyval) for autosave
 - Vitest for the layout engine tests
-- Static deployment (GitHub Pages / Netlify / Vercel)
+- Static deployment: published on GitHub Pages (https://lehenandmartin.github.io/AllAboard/)
+  by `.github/workflows/pages.yml` at every push to main (tests, then build with
+  `--base=/AllAboard/`); any other static host works too
 
 ## Concepts
 - **Project**: a presentation = a slide format + a list of boards.
