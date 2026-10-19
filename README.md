@@ -9,11 +9,11 @@
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8">
 </p>
 
-<a href="https://lehenandmartin.github.io/AllAboard/" target="_blank"><img width="1920" height="1107" alt="Screenshot of AllAboard" src="https://github.com/user-attachments/assets/43f66aba-5b85-48fe-a514-4add15cea6d6" /></a>
+<a href="https://lehenandmartin.github.io/AllAboard/"><img width="1920" height="1107" alt="Screenshot of AllAboard" src="https://github.com/user-attachments/assets/43f66aba-5b85-48fe-a514-4add15cea6d6" /></a>
 
 
 <p align="center">
-  <a href="https://lehenandmartin.github.io/AllAboard/" target="_blank"><strong>Open AllAboard</strong></a> — runs in your browser, nothing to install
+  <a href="https://lehenandmartin.github.io/AllAboard/"><strong>Open AllAboard</strong></a> — runs in your browser, nothing to install
 </p>
 
 ---
