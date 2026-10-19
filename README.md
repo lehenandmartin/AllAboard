@@ -2,7 +2,8 @@
 <h3 align="center">Lay out a storyboard in the browser and export it to PowerPoint: no slide to build by hand, no image to resize.</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT">
+  <img src="https://img.shields.io/github/v/release/lehenandmartin/AllAboard" alt="Latest release">
+  <img src="https://img.shields.io/github/license/lehenandmartin/AllAboard" alt="License">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React 19">
   <img src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8">
